@@ -41,6 +41,9 @@ const productSchema = new Schema<TProduct>(
       type: Boolean,
       default: false,
     },
+    offerPrice: {
+      type: Number,
+    },
     isDeleted: {
       type: Boolean,
       default: false,

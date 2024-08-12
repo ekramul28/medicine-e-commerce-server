@@ -8,10 +8,10 @@ import { PaymentRoutes } from "../modules/payment/payment.route";
 const router = Router();
 
 const moduleRoutes = [
-  {
-    path: "/user",
-    route: UserRoutes,
-  },
+  // {
+  //   path: "/user",
+  //   route: UserRoutes,
+  // },
   {
     path: "/auth",
     route: AuthRoutes,

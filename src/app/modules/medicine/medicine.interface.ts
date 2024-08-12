@@ -8,5 +8,6 @@ export type TProduct = {
   description: string;
   discount?: number;
   offer?: boolean;
+  offerPrice?: number;
   isDeleted?: boolean;
 };
