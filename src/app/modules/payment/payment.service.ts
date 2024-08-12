@@ -1,8 +1,9 @@
 import Stripe from "stripe";
-import { STRIPE_API_VERSION, STRIPE_SECRET_KEY } from "./payment.constant";
+import { STRIPE_API_VERSION } from "./payment.constant";
 import { Cart } from "../cart/cart.model";
 import { Product } from "../medicine/medicine.model";
-const stripe = new Stripe(STRIPE_SECRET_KEY, {
+import config from "../../config";
+const stripe = new Stripe(config.stripe_api_key as string, {
   apiVersion: STRIPE_API_VERSION,
 });
 
@@ -31,25 +32,6 @@ const createPaymentLink = async (email: string, total: number) => {
       quantity: cartItem?.productQuantity,
     };
   });
-
-  // const lineItems = products.map((cartItem) => {
-  //   const product = cartItem._id;
-  //   const title = cartItem.title;
-  //   const price = Math.round(cartItem.price);
-  //   const image = cartItem.image[0];
-
-  //   return {
-  //     price_data: {
-  //       currency: "usd",
-  //       product_data: {
-  //         name: title,
-  //         images: [image],
-  //       },
-  //       unit_amount: price * 100,
-  //     },
-  //     quantity: cartItems?.productQuantity,
-  //   };
-  // });
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
