@@ -4,6 +4,7 @@ import { TCart } from "./cart.interface";
 import { Cart } from "./cart.model";
 import mongoose from "mongoose";
 import { Product } from "../medicine/medicine.model";
+import { number } from "zod";
 
 const addProductFromDB = async (payload: TCart) => {
   if (!payload.email) {
@@ -33,11 +34,22 @@ const getProductFromDB = async (email: string) => {
     const product = products.find(
       (product) => product._id.toString() === cartItem.product.toString()
     );
+    let discountedPrice: number | undefined;
+    if (product) {
+      const discount = product.discount || 0;
+      const price = product.price || 0;
+
+      if (discount > 0) {
+        discountedPrice = price - (price * discount) / 100;
+      }
+    }
     return {
       _id: cartItem._id,
       product,
+      discountedPrice,
       productQuantity: cartItem.productQuantity,
       email: cartItem.email,
+      phoneNo: cartItem.phoneNo,
       createdAt: cartItem?.createdAt,
       updatedAt: cartItem?.updatedAt,
     };

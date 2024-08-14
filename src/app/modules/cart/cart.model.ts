@@ -10,7 +10,11 @@ const cartSchema = new Schema<TCart>(
     productQuantity: {
       type: Number,
     },
+
     email: {
+      type: String,
+    },
+    phoneNo: {
       type: String,
     },
   },

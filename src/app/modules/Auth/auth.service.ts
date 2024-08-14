@@ -7,7 +7,6 @@ import AppError from "../../errors/AppError";
 import { User } from "../user/user.model";
 import { TLoginUser } from "./auth.interface";
 import { createToken, verifyToken } from "./auth.utils";
-import { Types } from "mongoose";
 
 const loginUser = async (payload: TLoginUser) => {
   const user = await User.findOne({ email: payload?.email });
@@ -45,6 +44,8 @@ const loginUser = async (payload: TLoginUser) => {
     userId: user._id,
     role: user.role || "user",
     email: user.email,
+    phoneNo: user.phoneNo,
+    imageUrl: user.imageUrl,
   };
 
   const accessToken = createToken(
