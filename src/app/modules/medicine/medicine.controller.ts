@@ -26,7 +26,19 @@ const getSingleProduct = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getOfferProduct = catchAsync(async (req, res) => {
+  
+  const result = await ProductServices.getOfferProductFromDB();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "offer Product retrieved successfully",
+    data: result,
+  });
+});
 export const ProductControllers = {
   getAllProduct,
   getSingleProduct,
+  getOfferProduct,
 };

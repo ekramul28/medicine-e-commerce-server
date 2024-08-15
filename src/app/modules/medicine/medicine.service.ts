@@ -6,7 +6,6 @@ const ProductSearchableFields = [
   "rating",
   "price",
   "brand",
-  "keyboardType",
   "description",
   "offer",
 ];
@@ -32,7 +31,15 @@ const getSingleProductFromDB = async (id: string) => {
   const result = await Product.findById(id);
   return result;
 };
+const getOfferProductFromDB = async () => {
+  const result = await Product.find({
+    offer: true,
+  });
+  console.log(result);
+  return result;
+};
 export const ProductServices = {
   getAllProductFromDB,
   getSingleProductFromDB,
+  getOfferProductFromDB,
 };

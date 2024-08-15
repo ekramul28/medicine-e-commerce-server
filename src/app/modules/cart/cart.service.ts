@@ -35,6 +35,7 @@ const getProductFromDB = async (email: string) => {
       (product) => product._id.toString() === cartItem.product.toString()
     );
     let discountedPrice: number | undefined;
+    let OfferPrice: number | undefined;
     if (product) {
       const discount = product.discount || 0;
       const price = product.price || 0;
@@ -43,10 +44,19 @@ const getProductFromDB = async (email: string) => {
         discountedPrice = price - (price * discount) / 100;
       }
     }
+    if (product?.offer) {
+      const discount = product.offerDiscount || 0;
+      const price = product.price || 0;
+
+      if (discount > 0) {
+        OfferPrice = price - (price * discount) / 100;
+      }
+    }
     return {
       _id: cartItem._id,
       product,
       discountedPrice,
+      OfferPrice,
       productQuantity: cartItem.productQuantity,
       email: cartItem.email,
       phoneNo: cartItem.phoneNo,
