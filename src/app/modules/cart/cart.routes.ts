@@ -11,16 +11,24 @@ router.post(
   CardController.addProduct
 );
 router.get(
-  "/:email",
+  "/userCard",
   auth(USER_ROLE.admin, USER_ROLE.user),
   CardController.getProduct
 );
 router.get(
-  "/price/:email",
+  "/price",
   auth(USER_ROLE.admin, USER_ROLE.user),
   CardController.getTotalPrice
 );
-router.delete("/", auth(USER_ROLE.admin), CardController.deleteProduct);
-router.patch("/:id", auth(USER_ROLE.admin), CardController.updateProduct);
+router.delete(
+  "/",
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  CardController.deleteProduct
+);
+router.patch(
+  "/:id",
+  auth(USER_ROLE.admin, USER_ROLE.user),
+  CardController.updateProduct
+);
 
 export const CartRoute = router;

@@ -10,21 +10,19 @@ import cookieParser from "cookie-parser";
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(
   cors({
-    origin: [
-      "https://medicine-e-commerce-two.vercel.app",
-      "http://localhost:3000",
-    ],
+    origin: ["https://medicine-e-commerce-two.vercel.app"],
     credentials: true,
   })
 );
 
-app.use("/api/v1", router);
-
 app.get("/", (req, res) => {
   res.send("Server Running");
 });
+
+app.use("/api/v1", router);
 
 app.use(globalErrorHandler);
 

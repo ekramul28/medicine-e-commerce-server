@@ -14,8 +14,10 @@ const addProduct = catchAsync(async (req, res) => {
 });
 
 const getProduct = catchAsync(async (req, res) => {
-  const { email } = req.params;
-  const result = await CartServices.getProductFromDB(email);
+  const user = req?.user || "";
+  console.log(user);
+  console.log("ok");
+  const result = await CartServices.getProductFromDB(user?.email);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -46,8 +48,8 @@ const updateProduct = catchAsync(async (req, res) => {
   });
 });
 const getTotalPrice = catchAsync(async (req, res) => {
-  const { email } = req.params;
-  const result = await CartServices.getProductFromDB(email);
+  const user = req?.user || "";
+  const result = await CartServices.getProductFromDB(user?.email);
   let totalPriceArr: number[] = [];
   let discountPriceArr: number[] = [];
   result.forEach((cart) => {
