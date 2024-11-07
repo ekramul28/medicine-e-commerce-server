@@ -13,11 +13,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: [
-      "https://medicine-e-commerce-two.vercel.app",
-      "https://medicine-e-commerce-ten.vercel.app/",
-      "http://localhost:3000",
-    ],
+    origin: ["https://medicine-e-commerce-three.vercel.app"],
     credentials: true,
   })
 );
