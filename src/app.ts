@@ -4,17 +4,21 @@ import cors from "cors";
 import globalErrorHandler from "./app/middlewares/globalErrorhandler";
 import router from "./app/routes";
 const app: Application = express();
-import cookieParser from "cookie-parser";
 
 //parsers
 
 app.use(express.json());
-app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["https://medicine-e-commerce-three.vercel.app"],
-    credentials: true,
+    origin: [
+      "https://medicine-e-commerce-three.vercel.app",
+      "https://medicine-e-commerce-o2so90b1c-hassans-projects-72e9fd55.vercel.app",
+      "*",
+    ],
+    credentials: false,
+    // "https://medicine-e-commerce-o2so90b1c-hassans-projects-72e9fd55.vercel.app",
+    // "http://localhost:3000",
   })
 );
 

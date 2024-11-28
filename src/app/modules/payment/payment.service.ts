@@ -37,8 +37,8 @@ const createPaymentLink = async (email: string, total: number) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: "https://medicine-e-commerce-two.vercel.app/success",
-    cancel_url: "https://medicine-e-commerce-two.vercel.app/error",
+    success_url: "https://medicine-e-commerce-three.vercel.app/success",
+    cancel_url: "https://medicine-e-commerce-three.vercel.app/error",
   });
   return session;
 };
